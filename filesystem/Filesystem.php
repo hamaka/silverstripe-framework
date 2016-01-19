@@ -50,7 +50,8 @@ class Filesystem extends Object {
 	 */
 	public static function makeFolder($folder) {
 		if(!file_exists($base = dirname($folder))) self::makeFolder($base);
-		if(!file_exists($folder)) mkdir($folder, Config::inst()->get('Filesystem', 'folder_create_mask'));
+		//if(!file_exists($folder)) mkdir($folder, Config::inst()->get('Filesystem', 'folder_create_mask'));
+		if(!file_exists($folder)) mkdir($folder, Config::inst()->get('Filesystem', 'folder_create_mask'), true); // hamaka hmk custom - recursive flag op true gezet omdat je anders errors krijgt als je aan een uploadfield meegeeft dat het in map zus/en/zo opgeslagen moet worden;
 	}
 
 	/**

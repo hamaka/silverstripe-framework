@@ -231,7 +231,7 @@ class RestfulService extends ViewableData implements Flushable {
 	 */
 	public function curlRequest($url, $method, $data = null, $headers = null, $curlOptions = array()) {
 		$ch        = curl_init();
-		$timeout   = 5;
+		$timeout   = 50; // Hamaka hmk custom
 		$sapphireInfo = new SapphireInfo();
 		$useragent = 'SilverStripe/' . $sapphireInfo->Version();
 		$curlOptions = $curlOptions + (array)$this->config()->default_curl_options;

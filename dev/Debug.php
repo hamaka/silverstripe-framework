@@ -345,12 +345,18 @@ class Debug {
 					$statusCode,
 					class_exists('Translatable') ? Translatable::get_current_locale() : null
 				);
+				//HAMAKA: better error handling and file sniffing (specially in combination with subsites)
 				if(file_exists($errorFilePath)) {
 					$content = file_get_contents($errorFilePath);
-					if(!headers_sent()) header('Content-Type: text/html');
-					// $BaseURL is left dynamic in error-###.html, so that multi-domain sites don't get broken
-					echo str_replace('$BaseURL', Director::absoluteBaseURL(), $content);
+				} elseif (file_exists(ASSETS_PATH . "/error-$statusCode.html")) {
+					$content = file_get_contents(ASSETS_PATH . "/error-$statusCode.html");
+				} else {
+					$content = 'Website Error: '.$friendlyErrorMessage;
 				}
+				if(!headers_sent()) header('Content-Type: text/html');
+				// $BaseURL is left dynamic in error-###.html, so that multi-domain sites don't get broken
+				echo str_replace('$BaseURL', Director::absoluteBaseURL(), $content);
+				//HAMAKA-END
 			} else {
 				$renderer = new DebugView();
 				$renderer->writeHeader();

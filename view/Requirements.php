@@ -841,7 +841,8 @@ class Requirements_Backend {
 				$content = preg_replace("/(<\/body[^>]*>)/i", $jsRequirements . "\\1", $content);
 				
 				// Put CSS at the bottom of the head
-				$content = preg_replace("/(<\/head>)/i", $requirements . "\\1", $content);				
+				//$content = preg_replace("/(<\/head>)/i", $requirements . "\\1", $content);
+				$content = $this->getHtmlWithCssRequirementsInIt($requirements, $content); // hamaka hmk custom
 			} elseif($this->write_js_to_body) {
 				// Remove all newlines from code to preserve layout
 				$jsRequirements = preg_replace('/>\n*/', '>', $jsRequirements);
@@ -868,15 +869,36 @@ class Requirements_Backend {
 				}
 
 				// Put CSS at the bottom of the head
-				$content = preg_replace("/(<\/head>)/i", $requirements . "\\1", $content);
+				//$content = preg_replace("/(<\/head>)/i", $requirements . "\\1", $content);
+				$content = $this->getHtmlWithCssRequirementsInIt($requirements, $content); // hamaka hmk custom
 			} else {
-				$content = preg_replace("/(<\/head>)/i", $requirements . "\\1", $content);
+				//$content = preg_replace("/(<\/head>)/i", $requirements . "\\1", $content);
+				$content = $this->getHtmlWithCssRequirementsInIt($requirements, $content); // hamaka hmk custom
 				$content = preg_replace("/(<\/head>)/i", $jsRequirements . "\\1", $content);
 			}
 		}
 
 		return $content;
 	}
+
+
+	// Hamaka hmk custom
+	public function getHtmlWithCssRequirementsInIt($cssRequirements, $html)
+	{
+		$p1 = stripos($html, '<!-- combinedcss -->');
+
+		if($p1 !== false)
+		{	// marker found in template
+			$html = preg_replace("/(<!-- combinedcss -->)/i", $cssRequirements . "\\1", $html);
+		}
+		else
+		{ // process as usual
+			$html = preg_replace("/(<\/head>)/i", $cssRequirements . "\\1", $html);
+		}
+
+		return $html;
+	}
+
 
 	/**
 	 * Attach requirements inclusion to X-Include-JS and X-Include-CSS headers on the given

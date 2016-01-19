@@ -322,6 +322,13 @@ JS;
 			$e->populateTemplate(array(
 				'PasswordResetLink' => Security::getPasswordResetLink($member, $token)
 			));
+
+			// start hamaka hmk custom
+			$oSiteConfig = SiteConfig::current_site_config();
+			if($oSiteConfig->DefaultMailFrom && $oSiteConfig->DefaultMailFrom != '') $e->setFrom($oSiteConfig->DefaultMailFrom);
+			// end hamaka hmk custom
+
+
 			$e->setTo($member->Email);
 			$e->send();
 

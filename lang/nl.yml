@@ -194,7 +194,7 @@ nl:
     FilterBy: 'Filteren'
     Find: Zoeken
     LEVELUP: 'Niveau omhoog'
-    LinkExisting: 'Koppel een bestaand item'
+    LinkExisting: 'Koppel bestaande'
     NewRecord: 'Nieuw %s'
     NoItemsFound: 'Geen items gevonden.'
     PRINTEDAT: 'Geprint op'
@@ -518,8 +518,8 @@ nl:
     MORE: meer
   UploadField:
     ATTACHFILE: 'Voeg een bestand toe'
-    ATTACHFILES: 'Voeg bestanden toe'
-    AttachFile: 'Voeg bestand(en) toe'
+    ATTACHFILES: 'Gebruik geselecteerde bestanden'
+    AttachFile: 'Gebruik geselecteerde bestand(en)'
     CHOOSEANOTHERFILE: 'Kies een ander bestand'
     CHOOSEANOTHERINFO: 'Vervang dit bestand met een ander uit de bestandsopslag'
     DELETE: 'Volledig verwijderen'

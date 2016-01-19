@@ -6,7 +6,7 @@ HtmlEditorConfig::get('cms')->setOptions(array(
 
 	'body_class' => 'typography',
 	'document_base_url' => isset($_SERVER['HTTP_HOST']) ? Director::absoluteBaseURL() : null,
-
+	'language' => Config::inst()->get('i18n', 'js_i18n'), // hamaka hmk custom om de vertalingen van labels op ss buttons goed te krijgen
 	'cleanup_callback' => "sapphiremce_cleanup",
 
 	'use_native_selects' => false,

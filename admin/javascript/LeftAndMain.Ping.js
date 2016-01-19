@@ -35,15 +35,37 @@
 					}
 				};
 
+				// start hamaka hmk custom - fix ping errors
+				// ipv te pingen naar '../Security/ping' gaan we die url baseren op de base href om fake uitlog meldingen te voorkomen
+				var bases = document.getElementsByTagName('base');
+				var baseHref = null;
+
+				if (bases.length > 0) {
+						baseHref = bases[0].href;
+				}
+
+				var sUrl;
+
+				if(baseHref != null)
+				{
+					sUrl = baseHref + 'Security/ping';
+				}
+				else
+				{
+					sUrl = '../Security/ping';
+				}
 				// setup pinging for login expiry
 				setInterval(function() {
 					$.ajax({
-						url: 'Security/ping',
+						url: sUrl,
+						//url: '../Security/ping',
 						global: false,
 						type: 'POST',
 						complete: onSessionLost
 					});
 				}, this.getPingIntervalSeconds() * 1000);
+
+				// end hamaka hmk custom - fix ping errors
 			}
 		});
 	});
