@@ -105,7 +105,11 @@ abstract class StringField extends DBField {
 	 * @return string
 	 */
 	public function forTemplate() {
-		return nl2br($this->XML());
+		if(is_string($this->XML())) // hamaka custom - don't ask
+		{
+			return nl2br($this->XML());
+		}
+		return $this->XML();
 	}
 
 	/**

@@ -12,7 +12,8 @@ function getTempFolder($base = null) {
 	$parent = getTempParentFolder($base);
 
 	// The actual temp folder is a subfolder of getTempParentFolder(), named by username
-	$subfolder = $parent . DIRECTORY_SEPARATOR . getTempFolderUsername();
+	//$subfolder = $parent . DIRECTORY_SEPARATOR . getTempFolderUsername();
+	$subfolder = $parent; // hamaka hmk custom - username uit path.. zie CUSTOMISED
 
 	if(!@file_exists($subfolder)) {
 		mkdir($subfolder);

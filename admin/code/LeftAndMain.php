@@ -1566,7 +1566,7 @@ class LeftAndMain extends Controller implements PermissionProvider {
 		}
 
 		// Tries to obtain version number from composer.lock if it exists
-		$composerLockPath = BASE_PATH . '/composer.lock';
+		$composerLockPath = BASE_PATH . '/composer.lockNIETGEBRUIKEN';
 		if (file_exists($composerLockPath)) {
 			$cache = SS_Cache::factory('LeftAndMain_CMSVersion');
 			$cacheKey = filemtime($composerLockPath);

@@ -5,6 +5,8 @@
 /.settings
 css/GridField_print.css
 admin/thirdparty/chosen/node_modules
+css/GridField_print.css
+thirdparty/jstree/_demo/_inc/__mysql_errors.log
 
 
-
+.idea
